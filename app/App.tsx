@@ -1,20 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { Flex, NativeBaseProvider } from "native-base";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import AppNavigator from "./AppNavigator";
+
+// TODO: CHange background colour of app to white
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NativeBaseProvider>
+      <SafeAreaProvider>
+        <Flex h="full" safeAreaTop>
+          <AppNavigator />
+        </Flex>
+        <StatusBar style="auto" />
+      </SafeAreaProvider>
+    </NativeBaseProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
