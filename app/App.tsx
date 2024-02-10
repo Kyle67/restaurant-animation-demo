@@ -1,5 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { Flex, NativeBaseProvider } from "native-base";
+import "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import AppNavigator from "./AppNavigator";
 
