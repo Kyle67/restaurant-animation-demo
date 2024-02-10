@@ -1,6 +1,10 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import { NavigationContainer, NavigationProp } from "@react-navigation/native";
+import {
+  DefaultTheme,
+  NavigationContainer,
+  NavigationProp,
+} from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
 import Home from "./pages/Home";
@@ -33,9 +37,17 @@ export type NavigationProps = NavigationProp<StackScreens>;
 
 const Stack = createStackNavigator<StackScreens>();
 
+const AppTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: "white",
+  },
+};
+
 const AppNavigator = () => {
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={AppTheme}>
       <Stack.Navigator initialRouteName="HomeComponent">
         <Stack.Screen
           name="HomeComponent"

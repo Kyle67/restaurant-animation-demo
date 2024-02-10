@@ -1,9 +1,10 @@
-import { AntDesign, Entypo, FontAwesome, Fontisto } from "@expo/vector-icons";
+import { Entypo, FontAwesome, Fontisto } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { Flex, HStack, Icon, Image, Text, VStack } from "native-base";
 import { Dimensions, TouchableOpacity } from "react-native";
 import { NavigationProps } from "../../AppNavigator";
 import { DishInfo } from "../../pages/Home";
+import RatingTag from "../common/RatingTag";
 
 type DishCardProps = {
   dish: DishInfo;
@@ -26,6 +27,8 @@ const DishCard = ({ dish }: DishCardProps) => {
   const { width: WINDOW_WIDTH } = Dimensions.get("window");
 
   const navigation = useNavigation<NavigationProps>();
+
+  // TODO: Pure veg tag
 
   return (
     <TouchableOpacity
@@ -100,19 +103,9 @@ const DishCard = ({ dish }: DishCardProps) => {
             </Text>
           </VStack>
 
-          <HStack
-            bgColor="green.500"
-            alignItems="center"
-            space="2px"
-            rounded="md"
-            px="4px"
-            py="2px"
-            alignSelf="center"
-            mb="auto"
-          >
-            <Text color="white">{rating}</Text>
-            <Icon name="star" as={AntDesign} color="white" size="10px" />
-          </HStack>
+          <Flex mb="auto">
+            <RatingTag rating={rating} />
+          </Flex>
         </HStack>
         <Flex
           my="8px"
