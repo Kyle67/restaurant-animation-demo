@@ -8,7 +8,7 @@ type ChipProps = {
 const Chip = ({ children }: ChipProps) => {
   return (
     <Flex borderWidth={1} borderColor="gray.300" p="5px" rounded="lg">
-      <Text fontWeight="medium" my="auto">
+      <Text fontWeight="medium" mt="auto">
         {children}
       </Text>
     </Flex>

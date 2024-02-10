@@ -15,7 +15,13 @@ import {
   Text,
   VStack,
 } from "native-base";
+import { useEffect } from "react";
 import { Alert, ScrollView } from "react-native";
+import Animated, {
+  useSharedValue,
+  withDelay,
+  withSpring,
+} from "react-native-reanimated";
 import { StackScreens } from "../AppNavigator";
 import RatingTag from "../components/common/RatingTag";
 import DiscountCarousel from "../components/restaurant/DiscountCarousel";
@@ -101,9 +107,11 @@ type RestaurantProps = {
 const Restaurant = ({ route }: RestaurantProps) => {
   const { restaurantId } = route.params;
 
-  const ratingFormatter = Intl.NumberFormat("en", {
+  const ratingFormatter = new Intl.NumberFormat("en", {
     notation: "compact",
-    compactDisplay: "long",
+    compactDisplay: "short",
+    style: "currency",
+    currency: "INR",
   });
 
   const restaurant = DEMO_DATA.find(
@@ -120,10 +128,26 @@ const Restaurant = ({ route }: RestaurantProps) => {
     discount,
     discountUpTo,
     rating,
+    noOfRatings,
     locations,
   } = restaurant || {};
 
-  if (!rating || !expectedWait || !distance || !locations) return <Spinner />;
+  const height = useSharedValue<number | string>(100);
+  const opacity = useSharedValue<number | string>(0);
+  const tagsOpacity = useSharedValue<number | string>(0);
+
+  const onLoadAnimation = () => {
+    height.value = withDelay(500, withSpring(0, { duration: 3000 }));
+    opacity.value = withDelay(500, withSpring(1, { duration: 3000 }));
+    tagsOpacity.value = withSpring(1, { duration: 3000 });
+  };
+
+  useEffect(() => {
+    onLoadAnimation();
+  }, []);
+
+  if (!rating || !expectedWait || !distance || !locations || !noOfRatings)
+    return <Spinner />;
 
   return (
     <Flex>
@@ -162,7 +186,7 @@ const Restaurant = ({ route }: RestaurantProps) => {
                 }}
                 onPress={() => Alert.alert("Navigate to ratings")}
               >
-                {ratingFormatter.format(rating)}K ratings
+                {(noOfRatings / 1000).toFixed(1)}K ratings
               </Text>
             </HStack>
             <HStack bgColor="gray.200" p="4px" rounded="lg">
@@ -182,7 +206,13 @@ const Restaurant = ({ route }: RestaurantProps) => {
             showsHorizontalScrollIndicator={false}
             style={{ overflow: "visible" }}
           >
-            <HStack space="6px">
+            <Animated.View
+              style={{
+                opacity: tagsOpacity,
+                columnGap: 6,
+                flexDirection: "row",
+              }}
+            >
               <IconTag name="sliders" as={FontAwesome} text="Filters" />
               <IconTag name="medal" as={FontAwesome5} text="Bestseller" />
               <IconTag name="star" as={AntDesign} text="Top rated" />
@@ -192,9 +222,11 @@ const Restaurant = ({ route }: RestaurantProps) => {
                 as={MaterialIcons}
                 text="Other"
               />
-            </HStack>
+            </Animated.View>
           </ScrollView>
-          <Flex mt="12px">
+          <Animated.View style={{ opacity: opacity, marginTop: 12, flex: 1 }}>
+            <Animated.View style={{ height: height }}></Animated.View>
+
             <HStack alignItems="center" justifyContent="space-between">
               <Text fontWeight="bold" fontSize="18px">
                 Recommended
@@ -215,7 +247,7 @@ const Restaurant = ({ route }: RestaurantProps) => {
                 </Flex>
               ))}
             </VStack>
-          </Flex>
+          </Animated.View>
         </VStack>
       </ScrollView>
     </Flex>

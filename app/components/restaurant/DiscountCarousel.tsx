@@ -1,8 +1,9 @@
 import { Fontisto } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { Divider, Flex, Icon, Text } from "native-base";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AnimatedDotsCarousel from "react-native-animated-dots-carousel";
+import Animated, { useSharedValue, withSpring } from "react-native-reanimated";
 import Carousel from "react-native-reanimated-carousel";
 
 type DemoData = {
@@ -36,18 +37,39 @@ const DEMO_DATA: DemoData[] = [
 const DiscountCarousel = () => {
   const [carouselIndex, setCarouselIndex] = useState(1);
 
+  const height = useSharedValue<number | string>(100);
+  const opacity = useSharedValue<number | string>(0);
+
+  const onLoadAnimation = () => {
+    height.value = withSpring(0, { duration: 3000 });
+    opacity.value = withSpring(1, { duration: 3000 });
+  };
+
+  useEffect(() => {
+    onLoadAnimation();
+  }, []);
+
   return (
-    <Flex>
-      <Divider bgColor="blue.500" mt="12px" />
-      <Icon
-        name="shopping-sale"
-        as={Fontisto}
-        color="blue.500"
-        size="24px"
+    <Animated.View style={{ opacity: opacity }}>
+      <Animated.View style={{ height: height }}></Animated.View>
+      <Flex
+        bgColor="white"
+        alignSelf="center"
+        mb="-7px"
+        p="-5px"
         zIndex={1}
-        position="absolute"
-        left="50%" // TODO: Off center by 12px because of negative transform - give background
-      />
+        rounded="full"
+      >
+        <Icon
+          name="shopping-sale"
+          as={Fontisto}
+          color="blue.500"
+          size="24px"
+          m="-5px"
+        />
+      </Flex>
+      <Divider bgColor="blue.500" />
+
       <LinearGradient
         colors={["#bfdbfe", "white"]}
         style={{ alignItems: "center", paddingTop: 12, height: 90 }}
@@ -110,7 +132,7 @@ const DiscountCarousel = () => {
           />
         </Flex>
       </LinearGradient>
-    </Flex>
+    </Animated.View>
   );
 };
 

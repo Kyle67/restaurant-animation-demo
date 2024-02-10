@@ -82,6 +82,7 @@ const Home = () => {
             <Chip>
               <HStack
                 space="3px" // TODO: Not centered correctly
+                alignItems={"center"}
               >
                 <Icon name="sliders" as={FontAwesome} />
                 <Text fontWeight="medium">Sort</Text>

@@ -76,7 +76,13 @@ const DishCard = ({ dish }: DishCardProps) => {
         <Text color="gray.500">{description}</Text>
       </VStack>
       <VStack alignItems="center">
-        <Image source={{ uri: image }} h="150px" w="150px" rounded="xl" />
+        <Image
+          source={{ uri: image }}
+          alt={name}
+          h="150px"
+          w="150px"
+          rounded="xl"
+        />
         <Pressable
           bgColor="red.50"
           alignSelf="center"
