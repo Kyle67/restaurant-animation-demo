@@ -20,6 +20,7 @@ const HomeComponent = () => {
         component={Home}
         options={{
           tabBarIcon: () => (
+            // TODO: Change Tabbar
             <MaterialCommunityIcons name="home" color="black" size={26} />
           ),
         }}
