@@ -2,14 +2,14 @@ Based on the example shown [here](https://www.reddit.com/r/reactnative/comments/
 
 Demo of my version
 
-https://github.com/Kyle67/restaurant-animation-demo/assets/26408805/b57e524d-dfbe-44f8-a0db-fd22ec25d1e3
+https://github.com/Kyle67/restaurant-animation-demo/assets/26408805/73c6bc4e-1107-40ef-81a8-b4c4fd0f3fc5
 
 View the project by clicking the link or scanning the QR
 
-iOS- exp://u.expo.dev/update/ce7660fc-3363-4bc0-8cc9-9250834aa427
+iOS- exp://u.expo.dev/update/632d77a0-4bd4-4f61-8478-2fc3b95cf1bf
 
-![image](https://qr.expo.dev/eas-update?updateId=ce7660fc-3363-4bc0-8cc9-9250834aa427&appScheme=exp&host=u.expo.dev)
+![image](https://qr.expo.dev/eas-update?updateId=632d77a0-4bd4-4f61-8478-2fc3b95cf1bf&appScheme=exp&host=u.expo.dev)
 
-Android - exp://u.expo.dev/update/611f8488-de89-443a-b624-1fe1a8d19202
+Android - exp://u.expo.dev/update/7a174da9-8034-4a95-a962-ed36a1905c3a
 
-![image](https://qr.expo.dev/eas-update?updateId=611f8488-de89-443a-b624-1fe1a8d19202&appScheme=exp&host=u.expo.dev)
+![image](https://qr.expo.dev/eas-update?updateId=7a174da9-8034-4a95-a962-ed36a1905c3a&appScheme=exp&host=u.expo.dev)
