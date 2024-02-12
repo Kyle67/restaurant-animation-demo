@@ -89,7 +89,7 @@ const DEMO_DATA: DemoData[] = [
       },
     ],
     isPureVeg: true,
-    cuisines: ["South Indian", "Chinese"],
+    cuisines: ["South Indian", "Cafe"],
     expectedWait: [35, 40],
     distance: 9000,
     discount: 40,
